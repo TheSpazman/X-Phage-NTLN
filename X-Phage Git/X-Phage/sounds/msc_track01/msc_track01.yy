@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"msc_track01",
+  "audioGroupId":{
+    "name":"xp_music",
+    "path":"audiogroups/xp_music",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":202.0,
+  "name":"msc_track01",
+  "parent":{
+    "name":"Music",
+    "path":"folders/Music.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"msc_track01.ogg",
+  "type":0,
+  "volume":1.0,
+}
