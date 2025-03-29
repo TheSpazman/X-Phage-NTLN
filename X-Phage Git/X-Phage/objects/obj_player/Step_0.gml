@@ -1,12 +1,20 @@
-//--- GET PLAYER INPUT ---// 
+// REORGANIZED 3/29/25 -- SPAZ
+
+#region PLAYER INPUT
 
 get_controls();
+
+#endregion
+
+#region PLAYER PHYSICS
 
 //-- SET UP PLAYER PHYSICS --// 
 
 if playerCanMove { player_physics_normal(); };
 
+#endregion
 
+#region PLAYER BASIC MOVEMENT STATES
 //--- ANIMATION CONTROL -- I will likely be revising this -- Too unintuitive. ---// 
 
 switch (playerState) {
@@ -43,10 +51,14 @@ switch (playerState) {
 //show_debug_message(playerState)
 animStep();
 
+#endregion
+
+#region PLAYER ATTACK STATES 
+
 // -- ATTACK CODE -- // 
 
 player_attack();
 
-
+#endregion
 
 

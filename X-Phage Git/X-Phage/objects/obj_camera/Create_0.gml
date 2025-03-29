@@ -4,7 +4,8 @@
 camera		= camera_create();
 
 var vm		= matrix_build_lookat(x,y,-10,x,y,0,0,1,0);
-var pm		= matrix_build_projection_ortho(640,400,1,10000);
+
+// var pm		= matrix_build_projection_ortho(640,400,1,10000);
 
 camera_set_view_mat(camera , vm)
 
@@ -15,7 +16,9 @@ view_w_half = camera_get_view_width(cam) * 0.5;						// Getting camera width and
 view_h_half = camera_get_view_height(cam) * 0.5;
 xTo			= xstart;												// Where the camera is moving to, on the x and y plane. Are interchangeable with 'x' and 'y'.
 yTo			= ystart;
-playerSnap	= false;
+
+
+// playerSnap	= false;
 
 // Parallax Scrolling BGs, two slots. (Unused for now)
 

@@ -12,8 +12,8 @@
   "duration":0.696,
   "name":"snd_footstep",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Footsteps",
+    "path":"folders/Sounds/Gameplay Sounds/Player/Footsteps.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

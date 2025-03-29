@@ -12,8 +12,8 @@
   "duration":0.090363,
   "name":"snd_door_click",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Doors",
+    "path":"folders/Sounds/Gameplay Sounds/Doors.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

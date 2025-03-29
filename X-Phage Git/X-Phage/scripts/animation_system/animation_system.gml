@@ -1,9 +1,10 @@
 // X-PHAGE UNIVERSAL ANIMATION SCRIPT COMPILATION. //
 
 // THIS PAGE CONTAINS DIFFERENT FUNCTIONS PERTAINING TO THE USE  OF X-PHAGE'S UNIVERSAL ANIMATION SYSTEM, AND WHERE TO USE THEM. 
-// == PAY CLOSE ATTENTION TO THE COMMENTS IF YOU DO NOT UNDERSTAND SOMETHING! I TRY TO BE CONCISE. == 
+// == PAY CLOSE ATTENTION TO THE COMMENTS IF YOU DO NOT UNDERSTAND SOMETHING! I TRY TO COMMENT LIBERALLY. == 
 
 #region ANIMATION TYPE AND KEY ENUMERATOR
+
 enum animationType {				// ENUMERATOR FOR TYPES OF INFORMATION
 	
 	looped,							// LOOPED ANIMATIONS
@@ -30,6 +31,7 @@ enum animationKey {					// KEY TO DETERMINE ANIM-TYPE VARIABLE TO MODIFY
 #endregion
 
 #region CREATE-EVENT ANIMATION INITIALIZATION SCRIPT
+
 // CALL THIS IN CREATE-EVENT // 
 
 function animInit(){
@@ -42,6 +44,7 @@ function animInit(){
 #endregion
 
 #region DESTROY-EVENT SCRIPT TO PREVENT MEMORY LEAK
+
 // CALL THIS IN DESTROY-EVENT TO PREVENT MEMORY LEAKAGE // 
 
 function animDestroy(){
@@ -69,6 +72,7 @@ function animAddAnim(_animTagName, _scaleX, _scaleY, _maxAnimSpeed, _startFrame,
 #endregion
 
 #region ADD CHAINED ANIMATION
+
 // THIS FUNCTION ADDS CHAINED ANIMATIONS // 
 
 function animAddChainedAnim(_animTagName, _scaleX, _scaleY, _maxAnimSpeed, _startFrame, _endFrame, _spriteIndex, _repeatAmount, _nextAnimTag)
@@ -113,6 +117,7 @@ function animSet(animationTag)
 #endregion
 
 #region GET CURRENT ANIMATION (W/ TAG NAME) 
+
 // -GETS- THE CURRENT ANIMATION USING TAG-NAME // 
 
 function animGet()

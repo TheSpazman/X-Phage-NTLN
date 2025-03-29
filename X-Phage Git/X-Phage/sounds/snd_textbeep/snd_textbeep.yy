@@ -12,8 +12,8 @@
   "duration":0.064146,
   "name":"snd_textbeep",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Textbox Sounds",
+    "path":"folders/Sounds/Textbox Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

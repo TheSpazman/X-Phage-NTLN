@@ -9,8 +9,8 @@
   "name":"obj_testdoor",
   "overriddenProperties":[],
   "parent":{
-    "name":"Door",
-    "path":"folders/Objects/Systems/Testing/Door.yy",
+    "name":"Objects",
+    "path":"folders/Objects/Gameplay Objects/Doors/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

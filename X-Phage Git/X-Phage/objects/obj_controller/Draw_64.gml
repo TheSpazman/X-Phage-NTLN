@@ -1,22 +1,31 @@
 
+// THIS IS A LONG SECTION, SO BEAR WITH ME WHILE I TRY TO REORGANIZE EVERYTHING PIECEMEAL, DOWN TO SPECIFIC SUBSECTIONS
+// WITH APPROPRIATE COMMENTING. -- Spaz
 
+#region GAME WINDOW SETUP
 
+window_set_caption("X-Phage: Sci-Fi Cyberpunk Adventure");  // SET GAME-WINDOW TO GAME-TITLE.
 
+#endregion 
 
+#region IF THE GAME IS PAUSED, RUN -NONE- OF THE CODE IN THIS REGION. 
 
+#region PAUSER
 
-// IF THE GAME IS PAUSED, THESE SCRIPTS SHOULD NOT FUNCTION. // 
+if (!global.pause) exit;									// IF THE GAME IS PAUSED, THESE SCRIPTS SHOULD NOT FUNCTION. 
 
-window_set_caption("X-Phage: Sci-Fi Cyberpunk Adventure");
+#endregion
 
-if (!global.pause) exit;
-
-// DRAW MAIN / PAUSE MENU AND ELEMENTS // 
-
-// SETTING OPTIONS-MENU CURSOR HERE // 
+#region MOUSE CURSOR (TO BE DEPRECATED, AS GAME NO LONGER USES MOUSE CONTROLS)
 
 window_set_cursor(cr_none); 
 cursor_sprite = (global.cursor); 
+
+#endregion
+
+#region MAIN MENU
+
+#region MAIN MENU DIMENSIONAL SIZE AND BUFFERS
 
 // SIZE AND SETUP VARIABLES FOR SETTING UP PAUSE / MAIN MENU // 
 
@@ -35,29 +44,39 @@ var start_x = gwidth/2;
 //var menu_pos_x = 320;
 //var menu_pos_y = 200;
 
-// MENU RENDERING SCRIPT + VARIABLES
+#endregion
 
-// DRAWING THE STRETCHED / TESSELATED BACKGROUND FOR THE MAIN / PAUSE MENU // 
+#region MAIN MENU BACKGROUND VARIABLES + SPRITE
 
 var c = c_white
 var menu_pos_x   = 0;
 var menu_pos_y   = 0;
 var menu_scale_w = 640;
 var menu_scale_h = 400;
+draw_sprite_stretched(spr_menu,image_index,menu_pos_x,menu_pos_y,menu_scale_w,menu_scale_h);
+
+#endregion
+
+#region MAIN MENU XENOGON CREST
 
 var crest_pos_x  = 16;
 var crest_pos_y  = 16;
 image_speed = 0.2;
-
-
-draw_sprite_stretched(spr_menu,image_index,menu_pos_x,menu_pos_y,menu_scale_w,menu_scale_h);
 draw_sprite_stretched_ext(spr_crest1, image_index, crest_pos_x, crest_pos_y, 32, 32,c_white,0.5);
+
+#endregion
+
+#region COPYRIGHT FOOTER
 
 // SILLY COPYRIGHT THING FOR THE MENU // 
 
 var copyright_x = 316;
 var copyright_y = 384;
-draw_text_color(copyright_x, copyright_y, "X-Phage WIP Version -- 01.08.2025, by Spaz",c_aqua,c_aqua,c_aqua,c_aqua,0.5);
+draw_text_color(copyright_x, copyright_y, "X-Phage WIP Version -- 03.29.2025, by Spaz / NTLN",c_aqua,c_aqua,c_aqua,c_aqua,0.5);
+
+#endregion
+
+#region MAIN-MENU LEFT-SIDE ITEMS
 	
 // DRAW MENU ITEMS ON LEFT SIDE 
 
@@ -92,6 +111,9 @@ var yy = 0;
 		yy++;
 	}
 	
+#endregion
+
+#region MAIN-MENU DIVIDING LINE
 
 ////////////////////////////////////////////////////////////////
 
@@ -101,6 +123,9 @@ draw_line_color(start_x, start_y, start_x,lty, c_aqua, c_aqua);
 
 ////////////////////////////////////////////////////////////////
 
+#endregion 
+
+#region MAIN-MENU RIGHT-SIDE ITEMS
 // DRAW RIGHT-SIDE ELEMENTS
 
 draw_set_halign(fa_left);
@@ -220,6 +245,9 @@ repeat(ds_height)
 
 draw_set_valign(fa_top);
 
+#endregion
 
+#endregion
 
-//
+#endregion
+

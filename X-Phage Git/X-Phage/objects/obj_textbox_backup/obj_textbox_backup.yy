@@ -9,8 +9,8 @@
   "name":"obj_textbox_backup",
   "overriddenProperties":[],
   "parent":{
-    "name":"Textbox and Dialogue Systems",
-    "path":"folders/Textbox and Dialogue Systems.yy",
+    "name":"Textbox + Dialogue",
+    "path":"folders/Objects/Systems/Textbox + Dialogue.yy",
   },
   "parentObjectId":null,
   "persistent":true,

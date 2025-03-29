@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"obj_controller",
-    "path":"folders/Menus and Controllers/obj_controller.yy",
+    "path":"folders/Objects/Menus and Controllers/obj_controller.yy",
   },
   "parentObjectId":null,
   "persistent":true,

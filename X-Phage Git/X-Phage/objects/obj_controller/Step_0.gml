@@ -1,8 +1,8 @@
 // DEBUG THINGS // 
 
+#region GAME PAUSING
 
-
-if keyboard_check_pressed(global.pause_key)
+if keyboard_check_pressed(global.pause_key)								// DO THIS STUFF WHEN THE PAUSE-KEY IS PRESSED.
 {
 	switch (global.pause)
 		{
@@ -11,22 +11,36 @@ if keyboard_check_pressed(global.pause_key)
 				instance_activate_all(); 
 				global.pause = false; 
 				audio_play_sound(snd_back,1,false); 
-				page = menu_page.main;
+				page = menu_page.main;									// PLAY A SOUND AND DISPLAY THE MAIN-MENU WHEN PAUSED.
 				break;
 		}
 }
 
-if (!global.pause) exit;
+if (!global.pause) exit;												// EXIT THE MENU IF THE GAME ISN'T PAUSED.
+
+#endregion
+
+#region MAIN MENU CONTROLS
 
 menu_up = keyboard_check_pressed(global.up_key);
 menu_down = keyboard_check_pressed(global.down_key); 
 menu_accept = keyboard_check_pressed(global.confirm_key); 
 menu_cancel = keyboard_check_pressed(global.cancel_key); 
 
+#endregion 
+
+#region MAIN MENU SETUP
+
+#region DS GRID
+
 var ds_grid = menu_pages[page];
 var ds_height = ds_grid_height(ds_grid);
 
 var pos = menu_down - menu_up;
+
+#endregion
+
+#region WHEN INPUTTING (U/D/L/R + CHANGING MENU OPTIONS)
 
 if (inputting)
 	{
@@ -106,7 +120,9 @@ else
 		}
 	}
 
+#endregion
 
+#region WHEN CHANGES / INPUT ARE ACCEPTED
 	
 if(menu_accept)
 	{
@@ -140,4 +156,7 @@ if(menu_accept)
 			}
 	}
 
+#endregion 
+
+#endregion
 			

@@ -12,8 +12,8 @@
   "duration":0.149388,
   "name":"snd_shot1",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Test",
+    "path":"folders/Sounds/Gameplay Sounds/Player/Weapons/Test.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

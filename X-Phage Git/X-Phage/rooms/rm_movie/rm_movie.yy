@@ -103,8 +103,8 @@
   ],
   "name":"rm_movie",
   "parent":{
-    "name":"Test Rooms",
-    "path":"folders/Rooms/Test Rooms.yy",
+    "name":"System",
+    "path":"folders/Rooms/System.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

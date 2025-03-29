@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"GFX",
-    "path":"folders/Sprites/GFX.yy",
+    "name":"Fullscreen Graphics",
+    "path":"folders/Sprites/Fullscreen Graphics.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

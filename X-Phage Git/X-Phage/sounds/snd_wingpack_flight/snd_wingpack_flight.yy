@@ -12,8 +12,8 @@
   "duration":0.992653,
   "name":"snd_wingpack_flight",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Wingpack",
+    "path":"folders/Sounds/Gameplay Sounds/Player/Wingpack.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

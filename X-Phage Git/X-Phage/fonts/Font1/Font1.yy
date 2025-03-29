@@ -191,8 +191,8 @@
   "maintainGms1Font":false,
   "name":"Font1",
   "parent":{
-    "name":"Fonts",
-    "path":"folders/Fonts.yy",
+    "name":"Main Font",
+    "path":"folders/Fonts/Main Font.yy",
   },
   "pointRounding":0,
   "ranges":[

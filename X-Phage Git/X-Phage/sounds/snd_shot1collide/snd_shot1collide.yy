@@ -12,8 +12,8 @@
   "duration":0.142336,
   "name":"snd_shot1collide",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Test",
+    "path":"folders/Sounds/Gameplay Sounds/Player/Weapons/Test.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

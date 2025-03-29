@@ -12,8 +12,8 @@
   "duration":1.567347,
   "name":"snd_select",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"GUI Sounds",
+    "path":"folders/Sounds/GUI Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

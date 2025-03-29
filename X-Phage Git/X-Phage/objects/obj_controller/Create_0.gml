@@ -1,25 +1,22 @@
-/// @description Game Controller w/ Global Variables
+/// @description Game Controller
 
-// GLOBALS 
+// REORGANIZATION COMPLETE AS OF 3/29/25 -- Spaz
 
-controls_setup();
+#region INITIALIZE PLAYER CONTROLS
 
-// IS GAME PAUSED? 
+controls_setup();												// INITIALIZE PLAYER CONTROLS.
 
-global.pause = false; 
+get_controls();
 
-// SET GAME FONTS 
+#endregion
 
-global.font_main = font_add_sprite(spr_main_font, 32, true, 1);
-global.font_numb = font_add_sprite(spr_HUD_font, 32, true, 1); 
-global.tbox_text_speed = 0.5;							// Global Text-Typing Speed
+#region MOUSE CONTROLS
 
-// SET PLAYER CURSOR GRAPHIC HERE 
+global.cursor = spr_cursor1;									// PLAYER CURSOR (TO BE DEPRECATED, AS GAME
+																// NO LONGER USES MOUSE-CONTROLS.
 
-global.cursor = spr_cursor1;
-
-enum cursor_types
-{
+enum cursor_types												// TO BE DEPRECATED, AS GAME NO LONGER
+{																// USES MOUSE-CONTROLS.
 	pointer,
 	pointer_interact,
 	neutral,
@@ -27,30 +24,34 @@ enum cursor_types
 	hostile,
 }
 
+#endregion
+
+#region FONTS AND TEXT-RELATED
+
+global.pause = false;															// GAME SHOULD NOT BE PAUSED AT GAME-START.
+
+global.font_main = font_add_sprite(spr_main_font, 32, true, 1);					// MAIN GAME / MENU FONT
+global.font_numb = font_add_sprite(spr_HUD_font, 32, true, 1);					// GAMEPLAY HUD FONT
+
+global.tbox_text_speed = 0.5;													// GLOBAL TEXT-SPEED
+
+#endregion
+
+#region DISPLAY
+
 // MENU-RELATED RESOLUTION VARIABLES
 
-global.view_width					= camera_get_view_width(view_camera[0]);
-global.view_height					= camera_get_view_height(view_camera[0]);
+global.view_width					= camera_get_view_width(view_camera[0]);	// CAMERA 0 IS ALWAYS 640X400 
+global.view_height					= camera_get_view_height(view_camera[0]);	// (OR MULTIPLES OF)
 
-//////////////////////////////////////////////////////////////////////////////
-// KEYBINDS																	//
-//////////////////////////////////////////////////////////////////////////////
+display_set_gui_size(global.view_width, global.view_height);					// GUI SIZE SHOULD ALWAYS MATCH 640X400
+																				// (OR MULTIPLES OF)
 
-get_controls();
+#endregion
 
-//////////////////////////////////////////////////////////////////////////////
-// SET GAME RESOLUTION TO CHOSEN OPTIONS-MENU PARAMETERS                    //
-//////////////////////////////////////////////////////////////////////////////
+#region MAIN MENU
 
-display_set_gui_size(global.view_width, global.view_height); 
-
-//////////////////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////////////////
-// MENU TYPES, TREES, PAGES AND INFORMATION ENUMERATORS / ARRAYS            //
-//////////////////////////////////////////////////////////////////////////////
-
-enum menu_page 
+enum menu_page																	// MAIN-MENU SCRIPTS BEGIN HERE.
 {
 	main		, 
 	game		,
@@ -183,7 +184,13 @@ var i = 0, array_len = array_length(menu_pages);
 
 inputting = false; 
 
+#endregion
+
+#region AUDIO
+
 audio_group_load(xp_music);
 audio_group_load(xp_sfx);
+
+#endregion
 
 
