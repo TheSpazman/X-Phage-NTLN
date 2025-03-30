@@ -75,7 +75,7 @@ if jumpKeyPressed
 		jumpKeyBufferTimer = jumpBufferTime;
 	}
 	
-	if jumpKeyBufferTimer > 0 
+if jumpKeyBufferTimer > 0 
 	
 	{
 		jumpKeyBuffered = 1;

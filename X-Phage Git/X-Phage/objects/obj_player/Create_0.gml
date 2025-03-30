@@ -36,8 +36,7 @@ coyoteJumpTimer		= 0;		// Countdown of frames while CT is active (Jump)
 
 #region PLAYER JUMP FUNCTIONS + CONTROLS SETUP
 
-//---  CONTROLS SETUP ---//
-controls_setup();
+controls_setup(); // CONTROLS SETUP 
 
 #endregion 
 

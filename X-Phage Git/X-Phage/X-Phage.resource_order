@@ -73,8 +73,8 @@
     {"name":"Resolve","order":2,"path":"folders/Sprites/UI/HUD/Resolve.yy",},
     {"name":"Vitality","order":1,"path":"folders/Sprites/UI/HUD/Vitality.yy",},
     {"name":"Tile Sets","order":1,"path":"folders/Tile Sets.yy",},
-    {"name":"Foreground","order":3,"path":"folders/Tile Sets/Foreground.yy",},
     {"name":"Background","order":4,"path":"folders/Tile Sets/Background.yy",},
+    {"name":"Foreground","order":3,"path":"folders/Tile Sets/Foreground.yy",},
     {"name":"Timelines","order":6,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings":[

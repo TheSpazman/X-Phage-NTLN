@@ -227,43 +227,43 @@ function player_physics_normal(){
 
 //-- ANIMATION SYSTEM STATE MACHINE --//
 
-function kadinIdleState(){
-	//show_debug_message("Idle State");
+function kadinIdleState(){									// IDLE					   -- NO KEYED INPUT
+	show_debug_message("Idle State");						
 	//show_debug_message(xSpeed);
 	//show_debug_message(ySpeed);
 	wingpackSound = 0;
 	animSet("IDLE");
-	if ( xSpeed >= 1  || xSpeed <= -1 ) and (runType = 0){
-		playerState = playerStates.walk;
+	if ( playerDirection >= 1  || playerDirection <= -1 ) and (runType = 0){  // IF MOVING LEFT / RIGHT, AND RUN-KEY NOT-PRESSED
+		playerState = playerStates.walk;									  // => WALK STATE
 	}
 	
-	if ( xSpeed >= 1  || xSpeed <= -1 ) and (runType = 1){
-		playerState = playerStates.run;
+	if ( playerDirection >= 1  || playerDirection <= -1 ) and (runType = 1){  // IF MOVING LEFT / RIGHT, AND RUN-KEY PRESSED
+		playerState = playerStates.run;										  // => RUN STATE
 	}
 	
-	if (ySpeed < 0 ){
-		playerState = playerStates.rise;	
+	if (jumpKeyPressed){													  // IF JUMP-KEY PRESSED,
+		playerState = playerStates.rise;									  // => RISING STATE
 		
 	}
 	
-	if (ySpeed > 0 ){
-		playerState = playerStates.fall;	
+	if (!onGround) and (ySpeed > 0) {														  // IF PLAYER IS FALLING FOR ANY REASON
+		playerState = playerStates.fall;									  // => FALLING STATE
 	}
 
 }
 
-function kadinRisingState(){
-	//show_debug_message("Rise State");
+function kadinRisingState(){								// RISING -- START OF JUMP -- JUMP-BUTTON PRESSED
+	show_debug_message("Rise State");
 	//show_debug_message(xSpeed);
 	//show_debug_message(ySpeed);
 	animSet("RISING");
 	
-	if (ySpeed <= 0 ) and (image_index >= image_number-1){
-		playerState = playerStates.jump;
+	if (jumpKey) and (image_index >= image_number-1){		// IF JUMP-KEY HELD AND RISING-ANIMATION FINISHES, 
+		playerState = playerStates.jump;					// => JUMP / FLY STATE
 	}
 	
-	if (ySpeed > 0){
-		playerState = playerStates.fall;
+	else if (!jumpKey){											// IF JUMP-KEY RELEASED, 
+		playerState = playerStates.fall;					// RETURN TO => IDLE STATE
 	}
 	
 	
@@ -292,13 +292,13 @@ function kadinRisingState(){
 
 }
 
-function kadinJumpState(){
-	//show_debug_message("Jump State");
+function kadinJumpState(){									// JUMP / FLY              -- JUMP-BUTTON HELD
+	show_debug_message("Jump State");
 	//show_debug_message(xSpeed);
 	//show_debug_message(ySpeed);
 	animSet("FLYING");
-	if (ySpeed >= 0){ 
-		playerState = playerStates.fall;
+	if (ySpeed >= 0) and (!onGround) {										// IF PLAYER BEGINS FALLING FOR ANY REASON
+		playerState = playerStates.fall;					// => FALLING STATE
 	}
 	
 	if audio_is_playing(snd_wingpack_start) { wingpackSound = 0; audio_stop_sound(snd_wingpack_start); } 
@@ -325,8 +325,8 @@ function kadinJumpState(){
 	
 }
 
-function kadinFallState(){
-	//show_debug_message("Fall State");
+function kadinFallState(){									// FALLING				   -- JUMP-BUTTON RELEASED, GRAVITY IN EFFECT
+	show_debug_message("Fall State");
 	//show_debug_message(xSpeed);
 	//show_debug_message(ySpeed);
 	animSet("FALLING");
@@ -358,21 +358,27 @@ function kadinFallState(){
 		
 	} 
 	
-	if (ySpeed == 0){
+	if (ySpeed == 0) and (onGround) {
 		playerState = playerStates.land;
 	}
 
 }
 
-function kadinLandState(){
-	//show_debug_message("Land State");
+function kadinLandState(){									// LANDING				   -- PLAYER HITS GROUND, NO KEYED INPUT
+	
+	if (jumpKeyPressed){													  // IF JUMP-KEY PRESSED,
+		playerState = playerStates.rise;									  // => RISING STATE
+		
+	}
+	
+	show_debug_message("Land State");
 	//show_debug_message(xSpeed);
 	//show_debug_message(ySpeed);
 	animSet("LANDING");
 	
-	if (ySpeed > 0){
-		playerState = playerStates.fall;
-	}
+	//if (ySpeed > 0){
+	//	playerState = playerStates.fall;
+	//}
 	
 	if sprite_index = spr_KaDinLanded and (image_index >= image_number-1) {
 		playerState = playerStates.idle;
@@ -386,21 +392,26 @@ function kadinLandState(){
 	}
 }
 
-function kadinWalkState(){
-	//show_debug_message("Walk State");
+function kadinWalkState(){									// WALKING                 -- L/R DIRECTIONAL BUTTON INPUT
+	
+	show_debug_message("Walk State");
 	//show_debug_message(xSpeed);
 	//show_debug_message(ySpeed);
 	animSet("WALKING");
-	if(ySpeed < 0){
+	if(jumpKeyPressed){
 		playerState = playerStates.rise;
 	}
 	
-	if(xSpeed == 0){
+	if(!playerDirection) and (xSpeed = 0){
 		playerState = playerStates.idle;
 	}
 	
-	if ( xSpeed >= 1  || xSpeed <= -1 ) and (runType = 1){
+	if ( playerDirection ) and (runType = 1){
 		playerState = playerStates.run;
+	}
+	
+	if (!onGround) and ( ySpeed > 0){														  // IF PLAYER IS FALLING FOR ANY REASON
+		playerState = playerStates.fall;									  // => FALLING STATE
 	}
 	
 	//--- FOOTSTEP SOUND ATTEMPT ---// 
@@ -416,21 +427,26 @@ if (sprite_index == spr_KaDinWalk) and (playerFootstep = 0) and place_meeting(x,
 	
 }
 
-function kadinRunState(){
-	//show_debug_message("Run State");
+function kadinRunState(){									// RUNNING                 -- L/R + RUN BUTTON INPUT 
+	
+	show_debug_message("Run State");
 	//show_debug_message(xSpeed);
 	//show_debug_message(ySpeed);
 	animSet("RUNNING");
-	if(ySpeed < 0){
+	if(jumpKeyPressed){
 		playerState = playerStates.rise;
 	}
 	
-	if(xSpeed == 0){
+	if(!playerDirection) and (xSpeed = 0){
 		playerState = playerStates.idle;
 	}
 	
-	if ( xSpeed >= 1  || xSpeed <= -1 ) and (runType = 0){
+	if ( playerDirection >= 1  || playerDirection <= -1 ) and (runType = 0){
 		playerState = playerStates.walk;
+	}
+	
+	if (!onGround) and ( ySpeed > 0){														  // IF PLAYER IS FALLING FOR ANY REASON
+		playerState = playerStates.fall;													  // => FALLING STATE
 	}
 	
 	//--- FOOTSTEP SOUND ATTEMPT ---// 

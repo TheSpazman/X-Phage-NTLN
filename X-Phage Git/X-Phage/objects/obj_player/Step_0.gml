@@ -19,30 +19,31 @@ if playerCanMove { player_physics_normal(); };
 
 switch (playerState) {
 
-	case playerStates.idle:
+	case playerStates.idle:  //IDLE
 		kadinIdleState();
 		break;
 		
-	case playerStates.rise: 
+	case playerStates.rise:  //JUMP START
 		kadinRisingState(); 
 		break;
-	case playerStates.jump:
+		
+	case playerStates.jump:  //MID-AIR
 		kadinJumpState();
 		break;
 		
-	case playerStates.fall:
+	case playerStates.fall:  //FALLING
 		kadinFallState();
 		break;
 		
-	case playerStates.land:
+	case playerStates.land:  //LANDING
 		kadinLandState();
 		break;
 		
-	case playerStates.walk:
+	case playerStates.walk:  //WALKING
 		kadinWalkState();
 		break;
 		
-	case playerStates.run:
+	case playerStates.run:   //RUNNING
 		kadinRunState();
 		break;
 
