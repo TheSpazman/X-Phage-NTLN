@@ -46,6 +46,10 @@ switch (playerState) {
 	case playerStates.run:   //RUNNING
 		kadinRunState();
 		break;
+		
+	case playerStates.firestand: // FIRING WHILE STANDING
+		kadinFireStandState();
+		break;
 
 }
 

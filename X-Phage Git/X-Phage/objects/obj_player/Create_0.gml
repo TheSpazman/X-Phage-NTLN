@@ -57,18 +57,20 @@ enum playerStates{
 	land,
 	walk,
 	run,
+	firestand,
 
 }
 
 playerState = playerStates.idle;											// Player Initialization State
 
-animAddAnim("IDLE",noone,noone,1,0,0,spr_KaDinIdle);						// Player Idle Anim
+animAddAnim("IDLE",noone,noone,1,0,4,spr_KaDinIdle);						// Player Idle Anim
 animAddChainedAnim("RISING",1,1,1,0,7,spr_KaDinRising,1,"FLYING");			// Player Rising + Begin Jump Anim
 animAddAnim("FLYING",1,1,1,0,9,spr_KaDinJump);								// Player Mid-Flight Anim
 animAddAnim("LANDING",1,1,1,0,7,spr_KaDinLanded);							// Player Landing Anim
 animAddAnim("WALKING",1,1,1,0,17,spr_KaDinWalk);							// Player Walk Anim
 animAddAnim("RUNNING",1,1,1,0,17,spr_KaDinRun);								// Player Run Anim
 animAddAnim("FALLING",1,1,1,0,9,spr_KaDinFalling);							// Player Falling Anim
+animAddAnim("FIRESTAND",1,1,1,0,1,spr_KaDinFireStand);						// Player Firing Anim
 
 animSet("IDLE");
 
@@ -102,14 +104,24 @@ wingpackExhaust     = 0;		// Timer for Wingpack Exhaust Sprite!
 	#region JUMP CONTROLS
 
 //--- JUMP CONTROL VARIABLES ---// 
-grav				= .3;		// Gravity
-termVel				= 7;		// Terminal Velocity
-jumpMax				= 1;		// Max # of times player can jump. 
-jumpCount			= 0;		// # of jumps player has performed. 
-jumpHoldTimer		= 0;		// How many frames Jump-button has been held. 
-jumpHoldFrames[0]	= 12;		// Max # of frames jump-button can be held.
-jumpSpeed[0]		= -6;		// Player Jump-Speed. 
-onGround			= true;		// Is the player grounded? 1 / true for yes, 0 / false for no. 
+grav				= .3;						// Gravity
+termVel				= 5;						// Terminal Velocity
+jumpMax				= 2;						// Max # of times player can jump. 
+jumpCount			= 0;						// # of jumps player has performed. 
+jumpHoldTimer		= 0;						// How many frames Jump-button has been held. 
+jumpHoldFrames[0]	= 12;						// Max # of frames jump-button can be held.
+jumpHoldFrames[1]	= 12;						// Max # of frames jump-button can be held.
+jumpSpeed[0]		= -6;						// Player Jump-Speed. 
+jumpSpeed[1]		= -6;						// Player Jump-Speed. 
+onGround			= true;						// Is the player grounded? 1 / true for yes, 0 / false for no. 
+												
+jumpFuelAmount      = 99;						// CURRENT JUMP FUEL AMOUNT 
+jumpFuelMax         = 99;						// MAX JUMP-FUEL VALUE
+jumpFuelLossRate    = 18;						// JUMP FUEL LOSS-RATE (WHEN IN USE)
+jumpFuelRegenRate   =  4;						// JUMP FUEL REGEN RATE (WHEN LANDED) 
+jumpFuelString      = string(jumpFuelAmount);	// JUMP-FUEL PLAYER-HUD VALUE 
+jumpFuelDelay       =  0;						// (TRYING TO FIGURE OUT WHAT THIS IS FOR. OLD CODE.)
+deltaTime = delta_time / 1000000;				// DELTA TIME VALUE FOR JUMP CONTROLS
 
 #endregion
 

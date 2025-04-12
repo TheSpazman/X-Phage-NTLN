@@ -113,58 +113,54 @@ function player_physics_normal(){
 
 	// Gravity //
 	
-	if coyoteHangTimer > 0
+	if coyoteHangTimer > 0								// IF COYOTE-TIME HANG-TIME IS GREATER THAN 0, 
+	
 		{
-			// Reduce the timer by 1 every tick // 
 			
-			coyoteHangTimer--;
-		} else {
-			// Apply gravity to the player. //
+			coyoteHangTimer--;								// REDUCE COYOTE TIME TIMER BY 1 EVERY TICK // 
 			
-			ySpeed += grav;
+		} else {										// OTHERWISE..
 			
-			// We are no longer grounded. // 
-			
-			setOnGround(false);
+			ySpeed += grav;									// APPLY DOWNWARDS GRAVITY TO PLAYER //
+			setOnGround(false);								// PLAYER IS NOT GROUNDED // 
 		}
 	
 	// Reset + Prepare Jump (and Coyote-Time) Variables //
 	
-	if onGround
+	if onGround											// IF THE PLAYER IS GROUNDED, THEN.. 
 		{
-			jumpCount = 0;
-			coyoteJumpTimer = coyoteJumpFrames;
-		}else{
-			// Increases jump-count by 1 -- Disallow jump if max count and C.T Timer is reached. //
+			jumpCount = 0;									// ZERO JUMP-COUNT 
+			coyoteJumpTimer = coyoteJumpFrames;				// RESET COYOTE-TIME TIMER
 			
-			coyoteJumpTimer--; 
-			if jumpCount == 0 && coyoteJumpTimer <= 0 { jumpCount = 1; };
+		}else{											// OTHERWISE.. 
+			
+			coyoteJumpTimer--;												// REDUCE JUMP TIME TIMER BY 1 EVERY TICK // 
+			if jumpCount == 0 && coyoteJumpTimer <= 0 { jumpCount = 1; };   // IF JUMPCOUNT = 0 AND JUMPTIMER IS LESS THAN / EQUAL TO 0, SET JUMPCOUNT TO 1. 
 		}
 	
 	// Jump //
 	
-	if jumpKeyBuffered && jumpCount < jumpMax
+	if jumpKeyBuffered && jumpCount < jumpMax && jumpFuelAmount > 0 
 		{
-			// Reset buffer. //
 			
-			jumpKeyBuffered = false;
-			jumpKeyBufferTimer = 0; 
+			jumpKeyBuffered = false;																		// Reset buffer. //
+			jumpKeyBufferTimer = 0;																			//
+			
+			jumpCount++;																					// Increase number of jumps performed. //
+			
+			if !instance_exists(obj_WingpackLiftoff) { instance_create_depth(x,y,101,obj_WingpackLiftoff) } // SPAWN LIFTOFF OBJECT IF ONE DOES NOT EXIST.
+			
+			jumpHoldTimer = jumpHoldFrames[jumpCount-1];													
+			
+			setOnGround(false);																				// No longer on the ground. //
 			
 			
-			// Increase number of jumps performed. //
 			
-			jumpCount++;
-			
-			if !instance_exists(obj_WingpackLiftoff) { instance_create_depth(x,y,101,obj_WingpackLiftoff) }
-			
-			// Set jump-hold timer. //
-			
-			jumpHoldTimer = jumpHoldFrames[jumpCount-1]; 
-			
-			// No longer on the ground. //
-			
-			setOnGround(false);
 		}
+		
+
+		
+		
 		// Cut off the jump by releasing the jump-button. //
 		if !jumpKey
 		{
@@ -183,6 +179,8 @@ function player_physics_normal(){
 			jumpHoldTimer--; 
 		}
 	
+	
+		
 	// Y-Collision + Movement //
 	
 		// Falling-Speed Cap //
@@ -250,6 +248,9 @@ function kadinIdleState(){									// IDLE					   -- NO KEYED INPUT
 		playerState = playerStates.fall;									  // => FALLING STATE
 	}
 
+	if (fireKey) {												
+		playerState = playerStates.firestand;
+	}
 }
 
 function kadinRisingState(){								// RISING -- START OF JUMP -- JUMP-BUTTON PRESSED
@@ -330,6 +331,11 @@ function kadinFallState(){									// FALLING				   -- JUMP-BUTTON RELEASED, GRA
 	//show_debug_message(xSpeed);
 	//show_debug_message(ySpeed);
 	animSet("FALLING");
+	
+	if (jumpKeyPressed){													  // IF JUMP-KEY PRESSED,
+		playerState = playerStates.jump;									  // => RISING STATE
+		
+	}
 	
 	if audio_is_playing(snd_wingpack_start) { 
 		wingpackSound = 0; 
@@ -460,7 +466,22 @@ if (sprite_index == spr_KaDinRun) and (playerFootstep = 0) and place_meeting(x,y
 	}
 	else if (playerFootstep > 0) { playerFootstep--; }
 	
+
 }
+	
+function kadinFireStandState(){								// FIRING WHILE STANDING	-- PLAYER IS IDLE AND PRESSES THE FIRE BUTTON.
+
+	show_debug_message("Fire State");
+	
+	animSet("FIRESTAND");
+	
+	if(!fireKey) and (image_index >= image_number-1){
+		playerState = playerStates.idle;
+	}
+
+}
+	
+	
 
 
 	
